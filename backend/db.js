@@ -1,29 +1,11 @@
-const { Database: SQLiteDB } = require('node-sqlite3-wasm');
+const Database = require('better-sqlite3');
 const bcrypt = require('bcryptjs');
 const path = require('path');
 
 const DB_PATH = path.join(__dirname, 'adaytoremember.db');
-const _db = new SQLiteDB(DB_PATH);
+const db = new Database(DB_PATH);
 
-// Shim to make node-sqlite3-wasm look like better-sqlite3
-// better-sqlite3: stmt.run(...args), stmt.get(...args), stmt.all(...args)
-// node-sqlite3-wasm: stmt.run([...args]), stmt.get([...args]), stmt.all([...args])
-function wrapStmt(stmt) {
-  return {
-    run: (...args) => stmt.run(args.length === 1 && Array.isArray(args[0]) ? args[0] : args),
-    get: (...args) => stmt.get(args.length === 1 && Array.isArray(args[0]) ? args[0] : args),
-    all: (...args) => stmt.all(args.length === 1 && Array.isArray(args[0]) ? args[0] : args),
-  };
-}
-
-const db = {
-  prepare: (sql) => wrapStmt(_db.prepare(sql)),
-  exec: (sql) => _db.exec(sql),
-  pragma: (sql) => _db.run(`PRAGMA ${sql}`),
-};
-
-// Enable foreign keys
-_db.run('PRAGMA foreign_keys = ON');
+db.pragma('foreign_keys = ON');
 
 // Create tables
 db.exec(`
