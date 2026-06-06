@@ -27,18 +27,18 @@ export default function Navbar() {
   return (
     <nav className={`sticky top-0 z-50 transition-all duration-300 ${
       scrolled
-        ? 'bg-[#0f0c1a]/90 backdrop-blur-xl border-b border-white/10 shadow-2xl shadow-black/40'
-        : 'bg-transparent'
+        ? 'bg-white/95 backdrop-blur-xl border-b border-gray-100 shadow-sm shadow-gray-200/60'
+        : 'bg-white border-b border-gray-100'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-18 py-4">
+        <div className="flex items-center justify-between h-16">
 
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2.5 group">
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-violet-500 to-fuchsia-500 flex items-center justify-center text-lg shadow-lg shadow-violet-500/30 group-hover:shadow-violet-500/50 transition-all duration-300 group-hover:scale-110">
+            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-violet-600 to-pink-500 flex items-center justify-center text-lg shadow-md shadow-violet-300/50 group-hover:shadow-violet-400/60 transition-all duration-300 group-hover:scale-110">
               💛
             </div>
-            <span className="font-extrabold text-xl text-white tracking-tight">
+            <span className="font-extrabold text-xl text-gray-900 tracking-tight">
               A Day to <span className="text-gradient">Remember</span>
             </span>
           </Link>
@@ -49,8 +49,8 @@ export default function Navbar() {
               to="/companions"
               className={`px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 ${
                 isActive('/companions')
-                  ? 'bg-violet-500/20 text-violet-300'
-                  : 'text-gray-400 hover:text-white hover:bg-white/5'
+                  ? 'bg-violet-50 text-violet-700'
+                  : 'text-gray-500 hover:text-violet-700 hover:bg-violet-50'
               }`}
             >
               Find Companions
@@ -62,17 +62,17 @@ export default function Navbar() {
                   to={dashboardPath}
                   className={`px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 ${
                     location.pathname.startsWith('/dashboard')
-                      ? 'bg-violet-500/20 text-violet-300'
-                      : 'text-gray-400 hover:text-white hover:bg-white/5'
+                      ? 'bg-violet-50 text-violet-700'
+                      : 'text-gray-500 hover:text-violet-700 hover:bg-violet-50'
                   }`}
                 >
                   Dashboard
                 </Link>
-                <div className="flex items-center gap-3 ml-3 pl-3 border-l border-white/10">
-                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-violet-500 to-fuchsia-500 flex items-center justify-center text-sm font-bold text-white">
+                <div className="flex items-center gap-3 ml-3 pl-3 border-l border-gray-200">
+                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-violet-600 to-pink-500 flex items-center justify-center text-sm font-bold text-white shadow-sm">
                     {user.name[0].toUpperCase()}
                   </div>
-                  <span className="text-sm text-gray-300 font-medium">Hi, {user.name.split(' ')[0]}!</span>
+                  <span className="text-sm text-gray-700 font-semibold">Hi, {user.name.split(' ')[0]}!</span>
                   <button onClick={handleLogout} className="btn-outline text-xs py-1.5 px-3">
                     Logout
                   </button>
@@ -80,7 +80,7 @@ export default function Navbar() {
               </>
             ) : (
               <div className="flex items-center gap-3 ml-3">
-                <Link to="/login" className="px-4 py-2 rounded-xl text-sm font-semibold text-gray-400 hover:text-white hover:bg-white/5 transition-all duration-200">
+                <Link to="/login" className="px-4 py-2 rounded-xl text-sm font-semibold text-gray-500 hover:text-violet-700 hover:bg-violet-50 transition-all duration-200">
                   Login
                 </Link>
                 <Link to="/register" className="btn-primary text-sm py-2 px-5">
@@ -93,7 +93,7 @@ export default function Navbar() {
           {/* Mobile menu button */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="md:hidden p-2 rounded-xl text-gray-400 hover:text-white hover:bg-white/10 transition-all"
+            className="md:hidden p-2 rounded-xl text-gray-500 hover:text-violet-700 hover:bg-violet-50 transition-all"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               {menuOpen
@@ -106,25 +106,39 @@ export default function Navbar() {
 
         {/* Mobile menu */}
         {menuOpen && (
-          <div className="md:hidden pb-4 border-t border-white/10 mt-1 pt-3 flex flex-col gap-2">
-            <Link to="/companions" className="px-4 py-2.5 rounded-xl text-gray-300 hover:text-white hover:bg-white/5 font-medium transition-all" onClick={() => setMenuOpen(false)}>
+          <div className="md:hidden pb-4 border-t border-gray-100 mt-1 pt-3 flex flex-col gap-1">
+            <Link
+              to="/companions"
+              className="px-4 py-2.5 rounded-xl text-gray-600 hover:text-violet-700 hover:bg-violet-50 font-semibold transition-all"
+              onClick={() => setMenuOpen(false)}
+            >
               Find Companions
             </Link>
             {user ? (
               <>
-                <Link to={dashboardPath} className="px-4 py-2.5 rounded-xl text-gray-300 hover:text-white hover:bg-white/5 font-medium transition-all" onClick={() => setMenuOpen(false)}>
+                <Link
+                  to={dashboardPath}
+                  className="px-4 py-2.5 rounded-xl text-gray-600 hover:text-violet-700 hover:bg-violet-50 font-semibold transition-all"
+                  onClick={() => setMenuOpen(false)}
+                >
                   Dashboard
                 </Link>
-                <button onClick={handleLogout} className="btn-outline text-sm self-start ml-2">
+                <div className="flex items-center gap-3 px-4 py-2">
+                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-violet-600 to-pink-500 flex items-center justify-center text-sm font-bold text-white">
+                    {user.name[0].toUpperCase()}
+                  </div>
+                  <span className="text-sm text-gray-700 font-semibold">{user.name.split(' ')[0]}</span>
+                </div>
+                <button onClick={handleLogout} className="btn-outline text-sm self-start ml-4 mt-1">
                   Logout
                 </button>
               </>
             ) : (
               <>
-                <Link to="/login" className="px-4 py-2.5 rounded-xl text-gray-300 hover:text-white hover:bg-white/5 font-medium transition-all" onClick={() => setMenuOpen(false)}>
+                <Link to="/login" className="px-4 py-2.5 rounded-xl text-gray-600 hover:text-violet-700 hover:bg-violet-50 font-semibold transition-all" onClick={() => setMenuOpen(false)}>
                   Login
                 </Link>
-                <Link to="/register" className="btn-primary text-sm self-start ml-2" onClick={() => setMenuOpen(false)}>
+                <Link to="/register" className="btn-primary text-sm self-start ml-4 mt-1" onClick={() => setMenuOpen(false)}>
                   Get Started ✨
                 </Link>
               </>

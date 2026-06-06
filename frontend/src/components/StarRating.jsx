@@ -12,7 +12,7 @@ export default function StarRating({ rating, max = 5, interactive = false, onRat
             key={i}
             type="button"
             onClick={() => interactive && onRate && onRate(i + 1)}
-            className={`${interactive ? 'cursor-pointer hover:scale-125 transition-transform' : 'cursor-default'} ${filled ? 'text-amber-400 drop-shadow-[0_0_4px_rgba(251,191,36,0.6)]' : 'text-gray-600'}`}
+            className={`${interactive ? 'cursor-pointer hover:scale-125 transition-transform' : 'cursor-default'} ${filled ? 'text-amber-400' : 'text-gray-300'}`}
             disabled={!interactive}
           >
             ★
