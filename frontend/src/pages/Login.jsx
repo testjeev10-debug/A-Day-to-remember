@@ -3,6 +3,13 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
 
+const DEMO_ACCOUNTS = [
+  { label: 'Demo Client', email: 'demo@example.com', emoji: '👤' },
+  { label: 'Sofia', email: 'sofia@example.com', emoji: '🛍️' },
+  { label: 'James', email: 'james@example.com', emoji: '🎮' },
+  { label: 'Aisha', email: 'aisha@example.com', emoji: '💙' },
+];
+
 export default function Login() {
   const { login } = useAuth();
   const navigate = useNavigate();
@@ -19,8 +26,7 @@ export default function Login() {
     try {
       const res = await axios.post('/api/auth/login', form);
       login(res.data);
-      const role = res.data.user.role;
-      navigate(role === 'companion' ? '/dashboard/companion' : '/dashboard/client');
+      navigate(res.data.user.role === 'companion' ? '/dashboard/companion' : '/dashboard/client');
     } catch (err) {
       setError(err.response?.data?.error || 'Login failed. Please try again.');
     } finally {
@@ -29,84 +35,87 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 py-12">
-      <div className="w-full max-w-md">
-        <div className="card p-8">
+    <div className="min-h-screen bg-mesh flex items-center justify-center px-4 py-16 relative overflow-hidden">
+      {/* Background orbs */}
+      <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-violet-600/15 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-fuchsia-600/10 rounded-full blur-3xl pointer-events-none" />
+
+      <div className="w-full max-w-md relative z-10">
+        {/* Card */}
+        <div className="glass rounded-3xl border border-white/10 p-8 shadow-2xl shadow-black/40">
+          {/* Header */}
           <div className="text-center mb-8">
-            <div className="text-4xl mb-3">💛</div>
-            <h1 className="text-2xl font-bold text-gray-800">Welcome Back</h1>
-            <p className="text-gray-500 mt-1">Sign in to your account</p>
+            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-violet-500 to-fuchsia-500 flex items-center justify-center text-3xl mx-auto mb-4 shadow-lg shadow-violet-500/30">
+              💛
+            </div>
+            <h1 className="text-2xl font-extrabold text-white">Welcome Back</h1>
+            <p className="text-gray-500 mt-1 text-sm">Sign in to continue your journey</p>
           </div>
 
           {error && (
-            <div className="bg-red-50 border border-red-200 text-red-700 rounded-lg px-4 py-3 mb-6 text-sm">
-              {error}
+            <div className="bg-red-500/10 border border-red-500/30 text-red-400 rounded-xl px-4 py-3 mb-6 text-sm">
+              ⚠️ {error}
             </div>
           )}
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+              <label className="block text-xs font-black tracking-widest text-gray-500 uppercase mb-2">Email</label>
               <input
-                type="email"
-                name="email"
-                value={form.email}
-                onChange={handleChange}
-                required
-                placeholder="you@example.com"
-                className="input-field"
+                type="email" name="email" value={form.email} onChange={handleChange}
+                required placeholder="you@example.com" className="input-field"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Password</label>
+              <label className="block text-xs font-black tracking-widest text-gray-500 uppercase mb-2">Password</label>
               <input
-                type="password"
-                name="password"
-                value={form.password}
-                onChange={handleChange}
-                required
-                placeholder="••••••••"
-                className="input-field"
+                type="password" name="password" value={form.password} onChange={handleChange}
+                required placeholder="••••••••" className="input-field"
               />
             </div>
             <button
-              type="submit"
-              disabled={loading}
-              className="btn-primary w-full py-3 disabled:opacity-60 disabled:cursor-not-allowed"
+              type="submit" disabled={loading}
+              className="btn-primary w-full py-3.5 text-base disabled:opacity-60 disabled:cursor-not-allowed mt-2"
             >
-              {loading ? 'Signing in...' : 'Sign In'}
+              {loading ? (
+                <span className="flex items-center justify-center gap-2">
+                  <svg className="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"/>
+                  </svg>
+                  Signing in...
+                </span>
+              ) : 'Sign In →'}
             </button>
           </form>
 
-          <div className="mt-6 text-center">
-            <p className="text-gray-500 text-sm">
-              Don't have an account?{' '}
-              <Link to="/register" className="text-rose-600 hover:underline font-medium">
-                Sign up
-              </Link>
-            </p>
-          </div>
+          <p className="text-center text-gray-600 text-sm mt-6">
+            Don't have an account?{' '}
+            <Link to="/register" className="text-violet-400 hover:text-violet-300 font-semibold transition-colors">
+              Sign up free
+            </Link>
+          </p>
 
-          <div className="mt-6 pt-6 border-t border-gray-100">
-            <p className="text-xs text-gray-400 text-center mb-3">Demo accounts (password: password123)</p>
-            <div className="grid grid-cols-2 gap-2 text-xs">
-              <button
-                type="button"
-                onClick={() => setForm({ email: 'demo@example.com', password: 'password123' })}
-                className="border border-gray-200 rounded-lg p-2 hover:bg-gray-50 text-gray-600 text-left"
-              >
-                <span className="font-medium block">Demo Client</span>
-                <span className="text-gray-400">demo@example.com</span>
-              </button>
-              <button
-                type="button"
-                onClick={() => setForm({ email: 'sofia@example.com', password: 'password123' })}
-                className="border border-gray-200 rounded-lg p-2 hover:bg-gray-50 text-gray-600 text-left"
-              >
-                <span className="font-medium block">Sofia (Companion)</span>
-                <span className="text-gray-400">sofia@example.com</span>
-              </button>
+          {/* Demo accounts */}
+          <div className="mt-7 pt-6 border-t border-white/5">
+            <p className="text-xs text-gray-600 text-center mb-3 font-semibold tracking-wide uppercase">Try a demo account</p>
+            <div className="grid grid-cols-2 gap-2">
+              {DEMO_ACCOUNTS.map((acc) => (
+                <button
+                  key={acc.email}
+                  type="button"
+                  onClick={() => setForm({ email: acc.email, password: 'password123' })}
+                  className="flex items-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-xl p-3 text-left transition-all duration-200 group"
+                >
+                  <span className="text-xl">{acc.emoji}</span>
+                  <div>
+                    <p className="text-xs font-bold text-gray-300 group-hover:text-white transition-colors">{acc.label}</p>
+                    <p className="text-xs text-gray-600 truncate">{acc.email.split('@')[0]}</p>
+                  </div>
+                </button>
+              ))}
             </div>
+            <p className="text-xs text-gray-700 text-center mt-2">All use password: <code className="text-gray-500">password123</code></p>
           </div>
         </div>
       </div>

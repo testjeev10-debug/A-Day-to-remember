@@ -9,52 +9,68 @@ export default function CompanionCard({ companion }) {
   })();
 
   return (
-    <div className="card hover:shadow-lg transition-shadow duration-200 flex flex-col">
-      <div className="relative">
+    <div className="card-lift group relative bg-gradient-to-b from-white/8 to-white/3 border border-white/10 rounded-2xl overflow-hidden hover:border-violet-500/40">
+      {/* Photo */}
+      <div className="relative overflow-hidden h-56">
         <img
-          src={companion.photo_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(companion.name)}&background=f43f5e&color=fff&size=300`}
+          src={companion.photo_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(companion.name)}&background=7c3aed&color=fff&size=300`}
           alt={companion.name}
-          className="w-full h-52 object-cover"
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
           onError={(e) => {
-            e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(companion.name)}&background=f43f5e&color=fff&size=300`;
+            e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(companion.name)}&background=7c3aed&color=fff&size=300`;
           }}
         />
-        <div className="absolute top-3 right-3 bg-white rounded-full px-2 py-0.5 text-sm font-bold text-rose-600 shadow">
+        {/* Gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0f0c1a] via-[#0f0c1a]/20 to-transparent" />
+
+        {/* Rate badge */}
+        <div className="absolute top-3 right-3 bg-black/60 backdrop-blur-sm border border-white/20 rounded-xl px-3 py-1 text-sm font-bold text-amber-300">
           ${companion.hourly_rate}/hr
+        </div>
+
+        {/* Rating floating at bottom of image */}
+        <div className="absolute bottom-3 left-3 flex items-center gap-1.5 bg-black/60 backdrop-blur-sm border border-white/10 rounded-full px-2.5 py-1">
+          <StarRating rating={companion.avg_rating} size="sm" />
+          <span className="text-xs font-bold text-white">
+            {companion.avg_rating > 0 ? companion.avg_rating.toFixed(1) : 'New'}
+          </span>
+          {companion.review_count > 0 && (
+            <span className="text-xs text-gray-400">({companion.review_count})</span>
+          )}
         </div>
       </div>
 
-      <div className="p-4 flex flex-col flex-1">
-        <div className="flex items-start justify-between mb-1">
-          <h3 className="font-bold text-lg text-gray-800">{companion.name}</h3>
-          <div className="flex items-center gap-1 text-sm text-gray-500">
-            <StarRating rating={companion.avg_rating} size="sm" />
-            <span className="ml-1">{companion.avg_rating > 0 ? companion.avg_rating.toFixed(1) : 'New'}</span>
-          </div>
+      {/* Content */}
+      <div className="p-5 flex flex-col flex-1">
+        <div className="flex items-start justify-between mb-1.5">
+          <h3 className="font-extrabold text-lg text-white leading-tight">{companion.name}</h3>
         </div>
 
-        <p className="text-sm text-gray-500 mb-2 flex items-center gap-1">
-          <span>📍</span> {companion.city || 'Location not set'}
+        <p className="text-xs text-violet-400 font-semibold mb-3 flex items-center gap-1.5">
+          <span className="text-base">📍</span> {companion.city || 'Location not set'}
         </p>
 
-        <p className="text-sm text-gray-600 mb-3 line-clamp-2 flex-1">
+        <p className="text-sm text-gray-400 mb-4 line-clamp-2 leading-relaxed">
           {companion.bio || 'No bio yet.'}
         </p>
 
-        <div className="flex flex-wrap gap-1.5 mb-4">
+        {/* Activity badges */}
+        <div className="flex flex-wrap gap-1.5 mb-5">
           {activities.slice(0, 3).map((act) => (
             <ActivityBadge key={act} activity={act} size="sm" />
           ))}
           {activities.length > 3 && (
-            <span className="badge bg-gray-100 text-gray-600 text-xs px-2 py-0.5">+{activities.length - 3} more</span>
+            <span className="badge bg-white/10 text-gray-400 text-xs px-2.5 py-1">
+              +{activities.length - 3} more
+            </span>
           )}
         </div>
 
         <Link
           to={`/companions/${companion.id}`}
-          className="btn-primary text-center text-sm w-full"
+          className="block w-full text-center btn-primary py-2.5 text-sm mt-auto"
         >
-          View Profile
+          View Profile →
         </Link>
       </div>
     </div>
