@@ -51,38 +51,42 @@ export default function CompanionList() {
   const hasFilters = filters.activity || filters.city || filters.maxRate;
 
   return (
-    <div className="min-h-screen bg-mesh">
+    <div className="min-h-screen bg-gray-50">
+
       {/* Page header */}
-      <div className="relative overflow-hidden border-b border-white/5 py-14 px-4">
-        <div className="absolute inset-0 bg-gradient-to-br from-violet-600/10 via-transparent to-fuchsia-600/10 pointer-events-none" />
+      <div className="relative overflow-hidden bg-gradient-to-br from-violet-50 via-white to-pink-50 border-b border-gray-100 py-14 px-4">
+        <div className="absolute -top-20 -left-20 w-80 h-80 bg-violet-200/30 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-0 right-0 w-64 h-64 bg-pink-200/20 rounded-full blur-3xl pointer-events-none" />
         <div className="max-w-7xl mx-auto relative">
-          <h1 className="text-4xl md:text-5xl font-black text-white mb-3">
-            Find Your <span className="text-gradient">Companion</span>
+          <h1 className="text-4xl md:text-5xl font-black text-gray-900 mb-3">
+            Find Your <span className="text-gradient">Perfect Companion</span>
           </h1>
-          <p className="text-gray-400 text-lg">Browse {companions.length > 0 ? companions.length : ''} wonderful companions and find your perfect match.</p>
+          <p className="text-gray-500 text-lg">
+            Browse {companions.length > 0 ? companions.length : ''} wonderful companions and find your perfect match.
+          </p>
 
           {/* Active filter pills */}
           {hasFilters && (
             <div className="flex flex-wrap gap-2 mt-4">
               {filters.activity && (
-                <span className="inline-flex items-center gap-2 bg-violet-500/20 border border-violet-500/30 text-violet-300 rounded-full px-4 py-1.5 text-sm font-semibold">
+                <span className="inline-flex items-center gap-2 bg-violet-100 border border-violet-200 text-violet-700 rounded-full px-4 py-1.5 text-sm font-semibold">
                   🎯 {filters.activity}
-                  <button onClick={() => handleFilterChange('activity', '')} className="hover:text-white ml-1">×</button>
+                  <button onClick={() => handleFilterChange('activity', '')} className="hover:text-violet-900 ml-1 font-bold">×</button>
                 </span>
               )}
               {filters.city && (
-                <span className="inline-flex items-center gap-2 bg-blue-500/20 border border-blue-500/30 text-blue-300 rounded-full px-4 py-1.5 text-sm font-semibold">
+                <span className="inline-flex items-center gap-2 bg-blue-100 border border-blue-200 text-blue-700 rounded-full px-4 py-1.5 text-sm font-semibold">
                   📍 {filters.city}
-                  <button onClick={() => handleFilterChange('city', '')} className="hover:text-white ml-1">×</button>
+                  <button onClick={() => handleFilterChange('city', '')} className="hover:text-blue-900 ml-1 font-bold">×</button>
                 </span>
               )}
               {filters.maxRate && (
-                <span className="inline-flex items-center gap-2 bg-amber-500/20 border border-amber-500/30 text-amber-300 rounded-full px-4 py-1.5 text-sm font-semibold">
+                <span className="inline-flex items-center gap-2 bg-amber-100 border border-amber-200 text-amber-700 rounded-full px-4 py-1.5 text-sm font-semibold">
                   💰 Max ${filters.maxRate}/hr
-                  <button onClick={() => handleFilterChange('maxRate', '')} className="hover:text-white ml-1">×</button>
+                  <button onClick={() => handleFilterChange('maxRate', '')} className="hover:text-amber-900 ml-1 font-bold">×</button>
                 </span>
               )}
-              <button onClick={clearFilters} className="text-gray-500 hover:text-gray-300 text-sm underline ml-1 transition-colors">
+              <button onClick={clearFilters} className="text-gray-400 hover:text-gray-600 text-sm underline ml-1 transition-colors">
                 Clear all
               </button>
             </div>
@@ -98,18 +102,18 @@ export default function CompanionList() {
             {/* Mobile toggle */}
             <button
               onClick={() => setFiltersOpen(!filtersOpen)}
-              className="lg:hidden w-full flex items-center justify-between bg-white/5 border border-white/10 rounded-2xl px-5 py-3.5 mb-4 text-white font-semibold"
+              className="lg:hidden w-full flex items-center justify-between bg-white border border-gray-200 rounded-2xl px-5 py-3.5 mb-4 text-gray-700 font-semibold shadow-sm"
             >
               <span>🎛️ Filters {hasFilters ? `(active)` : ''}</span>
-              <span className={`transition-transform ${filtersOpen ? 'rotate-180' : ''}`}>▾</span>
+              <span className={`transition-transform text-gray-400 ${filtersOpen ? 'rotate-180' : ''}`}>▾</span>
             </button>
 
             <div className={`${filtersOpen ? 'block' : 'hidden'} lg:block`}>
-              <div className="glass rounded-2xl border border-white/10 p-6 sticky top-24 space-y-7">
+              <div className="bg-white rounded-2xl border border-gray-100 shadow-md p-6 sticky top-24 space-y-7">
                 <div className="flex items-center justify-between">
-                  <h2 className="font-extrabold text-white text-lg">🎛️ Filters</h2>
+                  <h2 className="font-extrabold text-gray-900 text-lg">🎛️ Filters</h2>
                   {hasFilters && (
-                    <button onClick={clearFilters} className="text-xs text-violet-400 hover:text-violet-300 font-semibold transition-colors">
+                    <button onClick={clearFilters} className="text-xs text-violet-600 hover:text-violet-700 font-semibold transition-colors">
                       Clear all
                     </button>
                   )}
@@ -117,14 +121,14 @@ export default function CompanionList() {
 
                 {/* Activity */}
                 <div>
-                  <label className="block text-xs font-black tracking-widest text-gray-500 uppercase mb-3">Activity</label>
-                  <div className="space-y-1 max-h-72 overflow-y-auto pr-1 custom-scroll">
+                  <label className="block text-xs font-black tracking-widest text-gray-400 uppercase mb-3">Activity</label>
+                  <div className="space-y-1 max-h-72 overflow-y-auto pr-1">
                     <button
                       onClick={() => handleFilterChange('activity', '')}
                       className={`w-full text-left px-3 py-2 rounded-xl text-sm font-semibold transition-all ${
                         !filters.activity
-                          ? 'bg-violet-500/20 text-violet-300 border border-violet-500/30'
-                          : 'text-gray-500 hover:text-gray-300 hover:bg-white/5'
+                          ? 'bg-violet-100 text-violet-700 border border-violet-200'
+                          : 'text-gray-500 hover:text-violet-700 hover:bg-violet-50'
                       }`}
                     >
                       ✦ All Activities
@@ -135,8 +139,8 @@ export default function CompanionList() {
                         onClick={() => handleFilterChange('activity', act)}
                         className={`w-full text-left px-3 py-2 rounded-xl text-sm transition-all ${
                           filters.activity === act
-                            ? 'bg-violet-500/20 text-violet-300 font-semibold border border-violet-500/30'
-                            : 'text-gray-500 hover:text-gray-300 hover:bg-white/5'
+                            ? 'bg-violet-100 text-violet-700 font-semibold border border-violet-200'
+                            : 'text-gray-500 hover:text-violet-700 hover:bg-violet-50'
                         }`}
                       >
                         {act}
@@ -147,7 +151,7 @@ export default function CompanionList() {
 
                 {/* City */}
                 <div>
-                  <label className="block text-xs font-black tracking-widest text-gray-500 uppercase mb-3">City</label>
+                  <label className="block text-xs font-black tracking-widest text-gray-400 uppercase mb-3">City</label>
                   <input
                     type="text"
                     value={filters.city}
@@ -159,8 +163,8 @@ export default function CompanionList() {
 
                 {/* Max Rate */}
                 <div>
-                  <label className="block text-xs font-black tracking-widest text-gray-500 uppercase mb-3">
-                    Max Rate: <span className="text-amber-400">{filters.maxRate ? `$${filters.maxRate}/hr` : 'Any'}</span>
+                  <label className="block text-xs font-black tracking-widest text-gray-400 uppercase mb-3">
+                    Max Rate: <span className="text-amber-500">{filters.maxRate ? `$${filters.maxRate}/hr` : 'Any'}</span>
                   </label>
                   <input
                     type="range" min="10" max="200" step="5"
@@ -168,7 +172,7 @@ export default function CompanionList() {
                     onChange={(e) => handleFilterChange('maxRate', e.target.value === '200' ? '' : e.target.value)}
                     className="w-full accent-violet-500"
                   />
-                  <div className="flex justify-between text-xs text-gray-600 mt-1">
+                  <div className="flex justify-between text-xs text-gray-400 mt-1">
                     <span>$10</span><span>$200+</span>
                   </div>
                 </div>
@@ -181,12 +185,12 @@ export default function CompanionList() {
             {loading ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
                 {[1,2,3,4,5,6].map((i) => (
-                  <div key={i} className="glass rounded-2xl border border-white/10 overflow-hidden animate-pulse">
-                    <div className="h-56 bg-white/5" />
+                  <div key={i} className="bg-white rounded-2xl border border-gray-100 overflow-hidden animate-pulse shadow-sm">
+                    <div className="h-56 bg-gray-100" />
                     <div className="p-5 space-y-3">
-                      <div className="h-4 bg-white/10 rounded w-2/3" />
-                      <div className="h-3 bg-white/5 rounded w-1/2" />
-                      <div className="h-3 bg-white/5 rounded" />
+                      <div className="h-4 bg-gray-100 rounded w-2/3" />
+                      <div className="h-3 bg-gray-50 rounded w-1/2" />
+                      <div className="h-3 bg-gray-50 rounded" />
                     </div>
                   </div>
                 ))}
@@ -194,13 +198,13 @@ export default function CompanionList() {
             ) : companions.length === 0 ? (
               <div className="text-center py-24">
                 <div className="text-6xl mb-4">🔍</div>
-                <h3 className="text-2xl font-extrabold text-white mb-3">No companions found</h3>
+                <h3 className="text-2xl font-extrabold text-gray-900 mb-3">No companions found</h3>
                 <p className="text-gray-500 mb-8">Try adjusting your filters to see more results.</p>
                 <button onClick={clearFilters} className="btn-primary py-3 px-8">Clear Filters</button>
               </div>
             ) : (
               <>
-                <p className="text-gray-600 text-sm mb-5 font-medium">
+                <p className="text-gray-400 text-sm mb-5 font-medium">
                   {companions.length} companion{companions.length !== 1 ? 's' : ''} found
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">

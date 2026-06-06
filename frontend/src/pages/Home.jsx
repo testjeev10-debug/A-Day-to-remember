@@ -6,9 +6,10 @@ import CompanionCard from '../components/CompanionCard';
 const ACTIVITY_CATEGORIES = [
   {
     label: '🌿 Outdoor & Nature',
-    gradient: 'from-emerald-600/30 to-teal-600/20',
-    border: 'border-emerald-500/30',
-    glow: 'hover:shadow-emerald-500/20',
+    tabLabel: '🌿 Outdoor',
+    gradientBar: 'from-emerald-400 to-teal-400',
+    bgLight: 'bg-emerald-50',
+    textColor: 'text-emerald-700',
     items: [
       { name: 'Picnic', emoji: '🧺' },
       { name: 'Hiking & Nature Walks', emoji: '🥾' },
@@ -23,9 +24,10 @@ const ACTIVITY_CATEGORIES = [
   },
   {
     label: '🎮 Entertainment',
-    gradient: 'from-violet-600/30 to-purple-600/20',
-    border: 'border-violet-500/30',
-    glow: 'hover:shadow-violet-500/20',
+    tabLabel: '🎮 Entertainment',
+    gradientBar: 'from-violet-400 to-purple-400',
+    bgLight: 'bg-violet-50',
+    textColor: 'text-violet-700',
     items: [
       { name: 'Movies & Entertainment', emoji: '🎬' },
       { name: 'Arcade Gaming', emoji: '🕹️' },
@@ -41,9 +43,10 @@ const ACTIVITY_CATEGORIES = [
   },
   {
     label: '🍜 Food & Drinks',
-    gradient: 'from-amber-600/30 to-orange-600/20',
-    border: 'border-amber-500/30',
-    glow: 'hover:shadow-amber-500/20',
+    tabLabel: '🍜 Food',
+    gradientBar: 'from-amber-400 to-orange-400',
+    bgLight: 'bg-amber-50',
+    textColor: 'text-amber-700',
     items: [
       { name: 'Dining & Cafes', emoji: '☕' },
       { name: 'Cooking Together', emoji: '🍳' },
@@ -55,9 +58,10 @@ const ACTIVITY_CATEGORIES = [
   },
   {
     label: '💆 Wellness',
-    gradient: 'from-pink-600/30 to-rose-600/20',
-    border: 'border-pink-500/30',
-    glow: 'hover:shadow-pink-500/20',
+    tabLabel: '💆 Wellness',
+    gradientBar: 'from-pink-400 to-rose-400',
+    bgLight: 'bg-pink-50',
+    textColor: 'text-pink-700',
     items: [
       { name: 'Emotional Support', emoji: '💙' },
       { name: 'Cuddling & Comfort', emoji: '🤗' },
@@ -68,9 +72,10 @@ const ACTIVITY_CATEGORIES = [
   },
   {
     label: '🛒 Shopping',
-    gradient: 'from-fuchsia-600/30 to-pink-600/20',
-    border: 'border-fuchsia-500/30',
-    glow: 'hover:shadow-fuchsia-500/20',
+    tabLabel: '🛍️ Shopping',
+    gradientBar: 'from-fuchsia-400 to-pink-400',
+    bgLight: 'bg-fuchsia-50',
+    textColor: 'text-fuchsia-700',
     items: [
       { name: 'Shopping', emoji: '🛍️' },
       { name: 'Thrift Shopping', emoji: '👗' },
@@ -79,9 +84,10 @@ const ACTIVITY_CATEGORIES = [
   },
   {
     label: '🖼️ Social & Cultural',
-    gradient: 'from-cyan-600/30 to-blue-600/20',
-    border: 'border-cyan-500/30',
-    glow: 'hover:shadow-cyan-500/20',
+    tabLabel: '🖼️ Cultural',
+    gradientBar: 'from-cyan-400 to-blue-400',
+    bgLight: 'bg-cyan-50',
+    textColor: 'text-cyan-700',
     items: [
       { name: 'Museum & Art Gallery', emoji: '🖼️' },
       { name: 'Book Club & Reading', emoji: '📚' },
@@ -94,58 +100,26 @@ const ACTIVITY_CATEGORIES = [
 ];
 
 const STATS = [
-  { value: '2,400+', label: 'Happy Clients', emoji: '😊' },
-  { value: '340+', label: 'Companions', emoji: '🤝' },
-  { value: '40+', label: 'Activities', emoji: '🎯' },
-  { value: '4.9★', label: 'Avg Rating', emoji: '⭐' },
+  { value: '2,400+', label: 'Happy Clients', emoji: '😊', color: 'text-violet-600', bg: 'bg-violet-50' },
+  { value: '340+', label: 'Companions', emoji: '🤝', color: 'text-pink-600', bg: 'bg-pink-50' },
+  { value: '40+', label: 'Activities', emoji: '🎯', color: 'text-amber-600', bg: 'bg-amber-50' },
+  { value: '4.9★', label: 'Avg Rating', emoji: '⭐', color: 'text-orange-600', bg: 'bg-orange-50' },
 ];
 
 const STEPS = [
-  { step: '01', title: 'Browse', desc: 'Explore companion profiles filtered by activity, city, and budget.', emoji: '🔍', color: 'from-violet-600 to-purple-600' },
-  { step: '02', title: 'Book', desc: 'Pick your activity, date, and duration. Instant confirmation.', emoji: '📅', color: 'from-fuchsia-600 to-pink-600' },
-  { step: '03', title: 'Enjoy', desc: 'Meet your companion and make a memory that lasts forever.', emoji: '✨', color: 'from-amber-500 to-orange-500' },
+  { step: '01', title: 'Browse', desc: 'Explore companion profiles filtered by activity, city, and budget.', emoji: '🔍', color: 'from-violet-600 to-purple-600', shadow: 'shadow-violet-200' },
+  { step: '02', title: 'Book', desc: 'Pick your activity, date, and duration. Instant confirmation.', emoji: '📅', color: 'from-fuchsia-500 to-pink-500', shadow: 'shadow-pink-200' },
+  { step: '03', title: 'Enjoy', desc: 'Meet your companion and make a memory that lasts forever.', emoji: '✨', color: 'from-amber-400 to-orange-500', shadow: 'shadow-amber-200' },
 ];
 
-const FLOATERS = ['🛍️','🎬','☕','🌳','💙','🎤','💃','🧺','🥾','🎨','🎵','🏖️','🍜','🧘','📷'];
+const HERO_PHOTOS = [
+  { src: 'https://randomuser.me/api/portraits/women/44.jpg', name: 'Priya', rating: '4.9', act: 'Hiking' },
+  { src: 'https://randomuser.me/api/portraits/men/32.jpg', name: 'James', rating: '5.0', act: 'Gaming' },
+  { src: 'https://randomuser.me/api/portraits/women/65.jpg', name: 'Aisha', rating: '4.8', act: 'Wellness' },
+  { src: 'https://randomuser.me/api/portraits/women/17.jpg', name: 'Sofia', rating: '4.9', act: 'Shopping' },
+];
 
-function useCountUp(target, duration = 2000, start = false) {
-  const [count, setCount] = useState(0);
-  useEffect(() => {
-    if (!start) return;
-    const num = parseFloat(target.replace(/[^0-9.]/g, ''));
-    const step = num / (duration / 16);
-    let current = 0;
-    const timer = setInterval(() => {
-      current += step;
-      if (current >= num) { setCount(num); clearInterval(timer); }
-      else setCount(Math.floor(current));
-    }, 16);
-    return () => clearInterval(timer);
-  }, [start]);
-  return count;
-}
-
-function StatsSection() {
-  const ref = useRef(null);
-  const [visible, setVisible] = useState(false);
-  useEffect(() => {
-    const observer = new IntersectionObserver(([e]) => { if (e.isIntersecting) setVisible(true); }, { threshold: 0.3 });
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
-
-  return (
-    <div ref={ref} className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
-      {STATS.map((s) => (
-        <div key={s.label} className="text-center glass rounded-2xl p-6 border border-white/10">
-          <div className="text-3xl mb-1">{s.emoji}</div>
-          <div className="text-3xl font-extrabold text-gradient mb-1">{s.value}</div>
-          <div className="text-gray-400 text-sm font-medium">{s.label}</div>
-        </div>
-      ))}
-    </div>
-  );
-}
+const ACTIVITY_PILLS = ['🧺 Picnic','🎬 Movies','☕ Cafes','🥾 Hiking','💃 Dancing','🎤 Karaoke','🏖️ Beach Day','🍜 Food Tour','🎨 Art','🧘 Yoga','📷 Photography','🛍️ Shopping','🎵 Concerts','💪 Gym','🔭 Stargazing'];
 
 export default function Home() {
   const [featured, setFeatured] = useState([]);
@@ -155,162 +129,209 @@ export default function Home() {
     axios.get('/api/companions').then((res) => setFeatured(res.data.slice(0, 3))).catch(() => {});
   }, []);
 
+  const cat = ACTIVITY_CATEGORIES[activeCategory];
+
   return (
-    <div className="bg-mesh min-h-screen">
+    <div className="bg-white min-h-screen">
 
       {/* ── HERO ── */}
-      <section className="relative min-h-[92vh] flex flex-col items-center justify-center px-4 overflow-hidden">
-        {/* Animated orbs */}
-        <div className="absolute top-20 left-1/4 w-72 h-72 bg-violet-600/20 rounded-full blur-3xl animate-float-slow pointer-events-none" />
-        <div className="absolute bottom-20 right-1/4 w-96 h-96 bg-fuchsia-600/15 rounded-full blur-3xl animate-float-slow delay-1000 pointer-events-none" />
-        <div className="absolute top-40 right-10 w-48 h-48 bg-amber-500/10 rounded-full blur-3xl animate-float-slow delay-500 pointer-events-none" />
+      <section className="relative overflow-hidden bg-gradient-to-br from-violet-50 via-white to-pink-50 pt-16 pb-20 px-4">
+        {/* Blob decorations */}
+        <div className="absolute -top-24 -left-24 w-96 h-96 bg-violet-200/40 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-10 right-0 w-80 h-80 bg-pink-200/30 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 left-1/3 w-64 h-64 bg-amber-100/50 rounded-full blur-3xl pointer-events-none" />
 
-        {/* Floating emojis */}
-        {FLOATERS.map((emoji, i) => (
-          <div
-            key={i}
-            className="absolute text-2xl select-none pointer-events-none opacity-20 animate-float"
-            style={{
-              left: `${5 + (i * 6.2) % 90}%`,
-              top: `${10 + (i * 13) % 75}%`,
-              animationDelay: `${(i * 0.4) % 6}s`,
-              animationDuration: `${5 + (i % 4)}s`,
-              fontSize: `${1.2 + (i % 3) * 0.4}rem`,
-            }}
-          >
-            {emoji}
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="flex flex-col lg:flex-row items-center gap-12">
+
+            {/* Left — Text */}
+            <div className="flex-1 text-center lg:text-left">
+              <div className="inline-flex items-center gap-2 bg-violet-100 rounded-full px-5 py-2 mb-7 text-sm font-semibold text-violet-700 animate-fade-up">
+                <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
+                340+ companions ready for you today
+              </div>
+
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-black mb-6 leading-tight tracking-tight animate-fade-up delay-100">
+                Your Perfect<br />
+                <span className="shimmer-text">Companion</span><br />
+                <span className="text-gray-900">Awaits 💛</span>
+              </h1>
+
+              <p className="text-xl text-gray-500 mb-9 max-w-xl mx-auto lg:mx-0 leading-relaxed animate-fade-up delay-200">
+                Hire a caring companion for shopping, movies, dining, city tours,
+                emotional support — and <strong className="text-gray-700">40+ more activities</strong>.
+              </p>
+
+              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start animate-fade-up delay-300">
+                <Link
+                  to="/companions"
+                  className="btn-primary py-4 px-9 text-lg rounded-2xl animate-pulse-glow"
+                >
+                  🔍 Find a Companion
+                </Link>
+                <Link
+                  to="/register"
+                  className="btn-outline py-4 px-9 text-lg"
+                >
+                  💼 Become a Companion
+                </Link>
+              </div>
+
+              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-5 mt-9 text-sm text-gray-400 animate-fade-up delay-500">
+                {['✅ Verified companions', '🔒 Safe & trusted', '⚡ Instant booking'].map((b) => (
+                  <span key={b} className="flex items-center gap-1.5 font-medium">{b}</span>
+                ))}
+              </div>
+            </div>
+
+            {/* Right — Photo collage */}
+            <div className="flex-1 relative w-full max-w-md mx-auto lg:mx-0">
+              <div className="grid grid-cols-2 gap-4 relative">
+                {HERO_PHOTOS.map((p, i) => (
+                  <div
+                    key={p.name}
+                    className={`relative rounded-2xl overflow-hidden shadow-xl group card-lift ${i === 1 ? 'mt-8' : ''} ${i === 3 ? '-mt-4' : ''}`}
+                  >
+                    <img
+                      src={p.src}
+                      alt={p.name}
+                      className="w-full h-44 object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+                    <div className="absolute bottom-3 left-3 right-3">
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <p className="text-white font-bold text-sm">{p.name}</p>
+                          <p className="text-white/70 text-xs">{p.act}</p>
+                        </div>
+                        <div className="bg-white/90 backdrop-blur-sm rounded-full px-2.5 py-1 flex items-center gap-1">
+                          <span className="text-amber-400 text-xs">★</span>
+                          <span className="text-gray-800 text-xs font-bold">{p.rating}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Floating badge */}
+              <div className="absolute -bottom-4 -left-4 bg-white rounded-2xl shadow-xl px-4 py-3 flex items-center gap-3 animate-float">
+                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-violet-500 to-pink-500 flex items-center justify-center text-lg">🤝</div>
+                <div>
+                  <p className="text-xs text-gray-400 font-medium">New booking</p>
+                  <p className="text-sm font-bold text-gray-900">Priya just booked!</p>
+                </div>
+              </div>
+            </div>
           </div>
-        ))}
 
-        {/* Hero content */}
-        <div className="relative z-10 text-center max-w-5xl mx-auto">
-          <div className="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-5 py-2 mb-8 text-sm font-semibold text-violet-300 backdrop-blur-sm animate-fade-up">
-            <span className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
-            340+ companions ready to join you today
+          {/* Activity pill scroll */}
+          <div className="mt-14 overflow-hidden">
+            <div className="flex gap-3 animate-none flex-wrap justify-center">
+              {ACTIVITY_PILLS.map((pill) => (
+                <Link
+                  key={pill}
+                  to={`/companions?activity=${encodeURIComponent(pill.split(' ').slice(1).join(' '))}`}
+                  className="flex-shrink-0 bg-white border border-gray-200 hover:border-violet-400 hover:bg-violet-50 hover:text-violet-700 text-gray-600 rounded-full px-5 py-2 text-sm font-semibold transition-all duration-200 shadow-sm"
+                >
+                  {pill}
+                </Link>
+              ))}
+            </div>
           </div>
-
-          <h1 className="text-6xl md:text-8xl font-black mb-6 leading-none tracking-tight animate-fade-up delay-100">
-            <span className="text-white">Never Do</span><br />
-            <span className="shimmer-text">Anything Alone</span><br />
-            <span className="text-white">Again.</span>
-          </h1>
-
-          <p className="text-xl md:text-2xl text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed animate-fade-up delay-200">
-            Hire a caring companion for shopping, movies, dining, city tours,
-            emotional support — and <strong className="text-gray-200">40+ more activities</strong>.
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-up delay-300">
-            <Link
-              to="/companions"
-              className="btn-primary py-4 px-10 text-lg rounded-2xl shadow-2xl shadow-violet-500/30 animate-pulse-glow"
-            >
-              🔍 Find a Companion
-            </Link>
-            <Link
-              to="/register"
-              className="bg-white/8 hover:bg-white/12 backdrop-blur-sm border border-white/15 text-white font-bold py-4 px-10 rounded-2xl text-lg transition-all duration-300 hover:border-white/30"
-            >
-              💼 Become a Companion
-            </Link>
-          </div>
-
-          {/* Trust badges */}
-          <div className="flex flex-wrap items-center justify-center gap-6 mt-12 text-sm text-gray-500 animate-fade-up delay-500">
-            {['✅ Verified companions', '🔒 Safe & trusted', '⚡ Instant booking', '💬 24/7 support'].map((b) => (
-              <span key={b} className="flex items-center gap-1.5">{b}</span>
-            ))}
-          </div>
-        </div>
-
-        {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-gray-600 animate-bounce">
-          <span className="text-xs font-medium tracking-widest uppercase">Scroll</span>
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-          </svg>
         </div>
       </section>
 
       {/* ── STATS ── */}
-      <section className="py-16 px-4">
-        <StatsSection />
+      <section className="py-14 px-4 bg-white border-y border-gray-100">
+        <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6">
+          {STATS.map((s) => (
+            <div key={s.label} className="text-center group">
+              <div className={`w-14 h-14 ${s.bg} rounded-2xl flex items-center justify-center text-2xl mx-auto mb-3 group-hover:scale-110 transition-transform duration-300`}>
+                {s.emoji}
+              </div>
+              <div className={`text-3xl font-extrabold ${s.color} mb-1`}>{s.value}</div>
+              <div className="text-gray-500 text-sm font-medium">{s.label}</div>
+            </div>
+          ))}
+        </div>
       </section>
 
       {/* ── ACTIVITIES ── */}
-      <section className="py-20 px-4 max-w-7xl mx-auto">
-        <div className="text-center mb-14">
-          <h2 className="section-title">What Would You Like to Do?</h2>
-          <p className="section-sub">40+ activities across 6 categories. Every moment covered.</p>
-        </div>
+      <section className="py-20 px-4 bg-gray-50">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="section-title">What Would You Like to Do?</h2>
+            <p className="section-sub">40+ activities across 6 categories. Every moment covered.</p>
+          </div>
 
-        {/* Category tabs */}
-        <div className="flex flex-wrap justify-center gap-2 mb-10">
-          {ACTIVITY_CATEGORIES.map((cat, i) => (
-            <button
-              key={i}
-              onClick={() => setActiveCategory(i)}
-              className={`px-4 py-2 rounded-xl text-sm font-bold border transition-all duration-200 ${
-                activeCategory === i
-                  ? `bg-gradient-to-r ${cat.gradient} border-white/20 text-white`
-                  : 'bg-white/5 border-white/10 text-gray-400 hover:text-white hover:bg-white/10'
-              }`}
-            >
-              {cat.label}
-            </button>
-          ))}
-        </div>
+          {/* Category tabs */}
+          <div className="flex flex-wrap justify-center gap-2 mb-10">
+            {ACTIVITY_CATEGORIES.map((c, i) => (
+              <button
+                key={i}
+                onClick={() => setActiveCategory(i)}
+                className={`px-5 py-2.5 rounded-full text-sm font-bold border transition-all duration-200 ${
+                  activeCategory === i
+                    ? 'bg-gradient-to-r from-violet-600 to-pink-500 text-white border-transparent shadow-md shadow-violet-200'
+                    : 'bg-white border-gray-200 text-gray-500 hover:text-violet-700 hover:border-violet-300 hover:bg-violet-50'
+                }`}
+              >
+                {c.tabLabel}
+              </button>
+            ))}
+          </div>
 
-        {/* Activity grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
-          {ACTIVITY_CATEGORIES[activeCategory].items.map((act) => (
-            <Link
-              key={act.name}
-              to={`/companions?activity=${encodeURIComponent(act.name)}`}
-              className={`group relative bg-gradient-to-br ${ACTIVITY_CATEGORIES[activeCategory].gradient}
-                border ${ACTIVITY_CATEGORIES[activeCategory].border} rounded-2xl p-5 text-center
-                transition-all duration-300 hover:-translate-y-1 hover:shadow-xl
-                ${ACTIVITY_CATEGORIES[activeCategory].glow} card-lift`}
-            >
-              <div className="text-4xl mb-3 transition-transform duration-300 group-hover:scale-125">
-                {act.emoji}
-              </div>
-              <p className="text-sm font-bold text-white leading-tight">{act.name}</p>
-              <div className="absolute inset-0 rounded-2xl bg-white/0 group-hover:bg-white/5 transition-colors duration-300" />
+          {/* Activity grid */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+            {cat.items.map((act) => (
+              <Link
+                key={act.name}
+                to={`/companions?activity=${encodeURIComponent(act.name)}`}
+                className={`group bg-white rounded-2xl shadow-sm border border-gray-100 hover:border-violet-200 hover:shadow-lg overflow-hidden transition-all duration-300 hover:-translate-y-1`}
+              >
+                <div className={`h-1.5 bg-gradient-to-r ${cat.gradientBar}`} />
+                <div className="p-5 text-center">
+                  <div className="text-4xl mb-3 transition-transform duration-300 group-hover:scale-125">
+                    {act.emoji}
+                  </div>
+                  <p className={`text-sm font-bold ${cat.textColor} leading-tight`}>{act.name}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
+
+          <div className="text-center mt-8">
+            <Link to="/companions" className="text-violet-600 hover:text-violet-700 font-semibold text-sm transition-colors hover:underline">
+              Browse all companions →
             </Link>
-          ))}
-        </div>
-
-        <div className="text-center mt-8">
-          <Link to="/companions" className="text-violet-400 hover:text-violet-300 font-semibold text-sm transition-colors">
-            Browse all companions →
-          </Link>
+          </div>
         </div>
       </section>
 
       {/* ── HOW IT WORKS ── */}
-      <section className="py-20 px-4">
+      <section className="py-20 px-4 bg-white">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-14">
             <h2 className="section-title">How It Works</h2>
-            <p className="section-sub">Three steps to your perfect day.</p>
+            <p className="section-sub">Three easy steps to your perfect day.</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative">
             {STEPS.map((s, i) => (
               <div
                 key={s.step}
-                className="relative glass rounded-2xl p-8 border border-white/10 text-center group hover:border-white/20 transition-all duration-300 hover:-translate-y-1"
+                className="relative bg-white rounded-2xl p-8 border border-gray-100 shadow-md text-center group hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
               >
-                <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${s.color} flex items-center justify-center text-2xl mx-auto mb-5 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${s.color} flex items-center justify-center text-2xl mx-auto mb-5 shadow-lg ${s.shadow} group-hover:scale-110 transition-transform duration-300`}>
                   {s.emoji}
                 </div>
                 <div className={`text-xs font-black tracking-widest bg-gradient-to-r ${s.color} bg-clip-text text-transparent mb-2`}>
                   STEP {s.step}
                 </div>
-                <h3 className="text-xl font-extrabold text-white mb-2">{s.title}</h3>
-                <p className="text-gray-400 text-sm leading-relaxed">{s.desc}</p>
+                <h3 className="text-xl font-extrabold text-gray-900 mb-2">{s.title}</h3>
+                <p className="text-gray-500 text-sm leading-relaxed">{s.desc}</p>
                 {i < STEPS.length - 1 && (
-                  <div className="hidden md:block absolute -right-3 top-1/2 -translate-y-1/2 text-gray-600 text-2xl z-10">→</div>
+                  <div className="hidden md:block absolute -right-3 top-1/2 -translate-y-1/2 text-gray-300 text-2xl z-10">→</div>
                 )}
               </div>
             ))}
@@ -320,29 +341,30 @@ export default function Home() {
 
       {/* ── FEATURED COMPANIONS ── */}
       {featured.length > 0 && (
-        <section className="py-20 px-4 max-w-7xl mx-auto">
-          <div className="text-center mb-14">
-            <h2 className="section-title">Meet Our Top Companions</h2>
-            <p className="section-sub">Verified, highly rated, and ready to make your day special.</p>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {featured.map((c) => <CompanionCard key={c.id} companion={c} />)}
-          </div>
-          <div className="text-center mt-10">
-            <Link to="/companions" className="btn-primary py-3.5 px-10 text-base">
-              View All 7 Companions ✨
-            </Link>
+        <section className="py-20 px-4 bg-gray-50">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-14">
+              <h2 className="section-title">Meet Our Top Companions</h2>
+              <p className="section-sub">Verified, highly rated, and ready to make your day special.</p>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {featured.map((c) => <CompanionCard key={c.id} companion={c} />)}
+            </div>
+            <div className="text-center mt-10">
+              <Link to="/companions" className="btn-primary py-3.5 px-10 text-base">
+                View All Companions ✨
+              </Link>
+            </div>
           </div>
         </section>
       )}
 
-      {/* ── TESTIMONIAL BANNER ── */}
-      <section className="py-20 px-4">
+      {/* ── TESTIMONIAL ── */}
+      <section className="py-20 px-4 bg-white">
         <div className="max-w-4xl mx-auto">
-          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-violet-900/60 to-fuchsia-900/60 border border-violet-500/30 p-12 text-center">
-            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-violet-600/10 to-fuchsia-600/10 pointer-events-none" />
-            <div className="absolute -top-10 -right-10 w-40 h-40 bg-violet-500/20 rounded-full blur-3xl" />
-            <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-fuchsia-500/20 rounded-full blur-3xl" />
+          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-violet-600 to-pink-500 p-12 text-center shadow-2xl shadow-violet-200">
+            <div className="absolute -top-10 -right-10 w-40 h-40 bg-white/10 rounded-full blur-2xl pointer-events-none" />
+            <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-white/10 rounded-full blur-2xl pointer-events-none" />
             <div className="relative">
               <div className="text-5xl mb-6">💬</div>
               <blockquote className="text-2xl font-bold text-white mb-6 leading-relaxed">
@@ -352,34 +374,34 @@ export default function Home() {
                 <img
                   src="https://randomuser.me/api/portraits/women/33.jpg"
                   alt="Sarah"
-                  className="w-12 h-12 rounded-full border-2 border-violet-400"
+                  className="w-12 h-12 rounded-full border-2 border-white/60 shadow"
                 />
                 <div className="text-left">
                   <p className="font-bold text-white">Sarah M.</p>
-                  <p className="text-violet-300 text-sm">Booked: Concerts & Live Music</p>
+                  <p className="text-white/70 text-sm">Booked: Concerts & Live Music</p>
                 </div>
-                <div className="ml-4 flex text-amber-400 text-lg">★★★★★</div>
+                <div className="ml-4 flex text-amber-300 text-lg">★★★★★</div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ── CTA ── */}
-      <section className="py-20 px-4">
+      {/* ── CTA BANNER ── */}
+      <section className="py-20 px-4 bg-gradient-to-br from-violet-50 to-pink-50">
         <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
+          <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-4">
             Ready to Make a<br />
-            <span className="text-gradient-gold">Memory? 🌟</span>
+            <span className="shimmer-text">Memory? 🌟</span>
           </h2>
-          <p className="text-gray-400 text-xl mb-10">
+          <p className="text-gray-500 text-xl mb-10">
             Join thousands of people who have already found their perfect companion.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/register" className="btn-primary py-4 px-10 text-lg rounded-2xl">
               Sign Up — It's Free
             </Link>
-            <Link to="/companions" className="bg-white/5 hover:bg-white/10 border border-white/15 hover:border-white/25 text-white font-bold py-4 px-10 rounded-2xl text-lg transition-all duration-300">
+            <Link to="/companions" className="btn-outline py-4 px-10 text-lg">
               Browse Companions
             </Link>
           </div>
@@ -387,18 +409,18 @@ export default function Home() {
       </section>
 
       {/* ── FOOTER ── */}
-      <footer className="border-t border-white/5 py-10 px-4">
+      <footer className="bg-white border-t border-gray-100 py-10 px-4">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-violet-500 to-fuchsia-500 flex items-center justify-center text-sm">
+            <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-violet-600 to-pink-500 flex items-center justify-center text-sm shadow-md shadow-violet-200">
               💛
             </div>
-            <span className="font-bold text-white">A Day to Remember</span>
+            <span className="font-bold text-gray-900">A Day to Remember</span>
           </div>
-          <p className="text-gray-600 text-sm">Making every day memorable, one companion at a time.</p>
-          <div className="flex gap-6 text-sm text-gray-600">
-            <Link to="/companions" className="hover:text-gray-400 transition-colors">Find Companions</Link>
-            <Link to="/register" className="hover:text-gray-400 transition-colors">Become a Companion</Link>
+          <p className="text-gray-400 text-sm">Making every day memorable, one companion at a time.</p>
+          <div className="flex gap-6 text-sm text-gray-500">
+            <Link to="/companions" className="hover:text-violet-600 transition-colors font-medium">Find Companions</Link>
+            <Link to="/register" className="hover:text-violet-600 transition-colors font-medium">Become a Companion</Link>
           </div>
         </div>
       </footer>
