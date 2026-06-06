@@ -4,11 +4,51 @@ import axios from 'axios';
 import CompanionCard from '../components/CompanionCard';
 
 const ACTIVITIES = [
-  { name: 'Shopping', emoji: '🛍️', desc: 'Explore boutiques and malls together', color: 'bg-pink-50 border-pink-200 hover:bg-pink-100' },
-  { name: 'Movies & Entertainment', emoji: '🎬', desc: 'Enjoy films and live shows side by side', color: 'bg-purple-50 border-purple-200 hover:bg-purple-100' },
-  { name: 'Dining & Cafes', emoji: '☕', desc: 'Discover great food and conversation', color: 'bg-amber-50 border-amber-200 hover:bg-amber-100' },
-  { name: 'Outdoor & City Tours', emoji: '🌳', desc: 'Explore parks, sights, and hidden gems', color: 'bg-green-50 border-green-200 hover:bg-green-100' },
+  // Outdoor & Nature
+  { name: 'Shopping', emoji: '🛍️', desc: 'Boutiques, malls & retail therapy', color: 'bg-pink-50 border-pink-200 hover:bg-pink-100' },
+  { name: 'Outdoor & City Tours', emoji: '🌳', desc: 'Parks, sights and hidden gems', color: 'bg-green-50 border-green-200 hover:bg-green-100' },
+  { name: 'Picnic', emoji: '🧺', desc: 'Chill in the park with good company', color: 'bg-lime-50 border-lime-200 hover:bg-lime-100' },
+  { name: 'Hiking & Nature Walks', emoji: '🥾', desc: 'Trails, forests and fresh air', color: 'bg-emerald-50 border-emerald-200 hover:bg-emerald-100' },
+  { name: 'Beach Day', emoji: '🏖️', desc: 'Sun, waves and sandy adventures', color: 'bg-cyan-50 border-cyan-200 hover:bg-cyan-100' },
+  { name: 'Camping', emoji: '🏕️', desc: 'Campfire nights under the stars', color: 'bg-teal-50 border-teal-200 hover:bg-teal-100' },
+  { name: 'Cycling', emoji: '🚴', desc: 'Bike rides through the city or trails', color: 'bg-green-50 border-green-200 hover:bg-green-100' },
+  { name: 'Stargazing', emoji: '🔭', desc: 'Quiet nights watching the universe', color: 'bg-indigo-50 border-indigo-200 hover:bg-indigo-100' },
+  { name: 'Morning Walk', emoji: '🌅', desc: 'Start the day with peaceful strolls', color: 'bg-orange-50 border-orange-200 hover:bg-orange-100' },
+  { name: 'Gardening', emoji: '🌱', desc: 'Grow plants and enjoy nature together', color: 'bg-lime-50 border-lime-200 hover:bg-lime-100' },
+  // Entertainment & Games
+  { name: 'Movies & Entertainment', emoji: '🎬', desc: 'Films, shows and live entertainment', color: 'bg-purple-50 border-purple-200 hover:bg-purple-100' },
+  { name: 'Arcade Gaming', emoji: '🕹️', desc: 'Games, prizes and friendly competition', color: 'bg-violet-50 border-violet-200 hover:bg-violet-100' },
+  { name: 'Binge Watching', emoji: '📺', desc: 'Cozy series marathons at home', color: 'bg-purple-50 border-purple-200 hover:bg-purple-100' },
+  { name: 'Board Games & Puzzles', emoji: '🎲', desc: 'Strategy, luck and lots of laughs', color: 'bg-yellow-50 border-yellow-200 hover:bg-yellow-100' },
+  { name: 'Karaoke', emoji: '🎤', desc: 'Sing your heart out together', color: 'bg-rose-50 border-rose-200 hover:bg-rose-100' },
+  { name: 'Dancing', emoji: '💃', desc: 'Dance classes or a night out dancing', color: 'bg-fuchsia-50 border-fuchsia-200 hover:bg-fuchsia-100' },
+  { name: 'Escape Rooms', emoji: '🔐', desc: 'Solve puzzles and escape together', color: 'bg-red-50 border-red-200 hover:bg-red-100' },
+  { name: 'Concerts & Live Music', emoji: '🎵', desc: 'Share the magic of live performances', color: 'bg-pink-50 border-pink-200 hover:bg-pink-100' },
+  { name: 'Comedy Shows', emoji: '🎭', desc: 'Laugh the night away at live comedy', color: 'bg-amber-50 border-amber-200 hover:bg-amber-100' },
+  { name: 'Painting & Art', emoji: '🎨', desc: 'Create art and express yourself', color: 'bg-orange-50 border-orange-200 hover:bg-orange-100' },
+  // Food & Drinks
+  { name: 'Dining & Cafes', emoji: '☕', desc: 'Great food and warm conversation', color: 'bg-amber-50 border-amber-200 hover:bg-amber-100' },
+  { name: 'Cooking Together', emoji: '🍳', desc: 'Whip up meals and learn new recipes', color: 'bg-amber-50 border-amber-200 hover:bg-amber-100' },
+  { name: 'Brunch Date', emoji: '🥞', desc: 'Lazy mornings with good food', color: 'bg-yellow-50 border-yellow-200 hover:bg-yellow-100' },
+  { name: 'Food Tour', emoji: '🍜', desc: 'Explore local cuisines and hidden gems', color: 'bg-red-50 border-red-200 hover:bg-red-100' },
+  { name: 'Dessert & Cafe Hopping', emoji: '🍰', desc: 'Sweet spots and coffee crawls', color: 'bg-pink-50 border-pink-200 hover:bg-pink-100' },
+  { name: 'Bar & Nightlife', emoji: '🍻', desc: 'Cocktails, dancing and a great night out', color: 'bg-purple-50 border-purple-200 hover:bg-purple-100' },
+  // Wellness & Self-care
   { name: 'Emotional Support', emoji: '💙', desc: 'A caring presence when you need it most', color: 'bg-blue-50 border-blue-200 hover:bg-blue-100' },
+  { name: 'Cuddling & Comfort', emoji: '🤗', desc: 'Warm, cozy and comforting companionship', color: 'bg-rose-50 border-rose-200 hover:bg-rose-100' },
+  { name: 'Yoga & Meditation', emoji: '🧘', desc: 'Find peace and balance together', color: 'bg-teal-50 border-teal-200 hover:bg-teal-100' },
+  { name: 'Gym & Workout', emoji: '💪', desc: 'Workout partner for motivation', color: 'bg-orange-50 border-orange-200 hover:bg-orange-100' },
+  { name: 'Spa Day', emoji: '💆', desc: 'Relax and recharge with company', color: 'bg-emerald-50 border-emerald-200 hover:bg-emerald-100' },
+  // Shopping & Errands
+  { name: 'Thrift Shopping', emoji: '👗', desc: 'Hunt for vintage finds together', color: 'bg-pink-50 border-pink-200 hover:bg-pink-100' },
+  { name: 'Grocery Shopping', emoji: '🛒', desc: 'Make errands fun with company', color: 'bg-green-50 border-green-200 hover:bg-green-100' },
+  // Social & Cultural
+  { name: 'Museum & Art Gallery', emoji: '🖼️', desc: 'Explore culture and history together', color: 'bg-stone-50 border-stone-200 hover:bg-stone-100' },
+  { name: 'Book Club & Reading', emoji: '📚', desc: 'Share stories and discuss books', color: 'bg-blue-50 border-blue-200 hover:bg-blue-100' },
+  { name: 'Sports Watching', emoji: '🏟️', desc: 'Cheer for your team side by side', color: 'bg-green-50 border-green-200 hover:bg-green-100' },
+  { name: 'Photography Walk', emoji: '📷', desc: 'Capture beautiful moments together', color: 'bg-gray-50 border-gray-200 hover:bg-gray-100' },
+  { name: 'Volunteering Together', emoji: '🤝', desc: 'Give back and make a difference', color: 'bg-cyan-50 border-cyan-200 hover:bg-cyan-100' },
+  { name: 'DIY Projects', emoji: '🔨', desc: 'Build, fix and create together', color: 'bg-yellow-50 border-yellow-200 hover:bg-yellow-100' },
 ];
 
 const STEPS = [

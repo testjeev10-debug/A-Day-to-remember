@@ -2,14 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import axios from 'axios';
 import CompanionCard from '../components/CompanionCard';
-
-const ACTIVITIES = [
-  'Shopping',
-  'Movies & Entertainment',
-  'Dining & Cafes',
-  'Outdoor & City Tours',
-  'Emotional Support',
-];
+import { ALL_ACTIVITIES as ACTIVITIES } from '../constants/activities';
 
 export default function CompanionList() {
   const [searchParams, setSearchParams] = useSearchParams();

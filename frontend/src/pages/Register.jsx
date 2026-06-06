@@ -2,14 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
-
-const ALL_ACTIVITIES = [
-  'Shopping',
-  'Movies & Entertainment',
-  'Dining & Cafes',
-  'Outdoor & City Tours',
-  'Emotional Support',
-];
+import { ALL_ACTIVITIES } from '../constants/activities';
 
 export default function Register() {
   const { login } = useAuth();

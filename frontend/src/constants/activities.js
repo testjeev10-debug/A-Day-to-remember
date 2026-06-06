@@ -1,0 +1,47 @@
+export const ALL_ACTIVITIES = [
+  // Outdoor & Nature
+  'Shopping',
+  'Outdoor & City Tours',
+  'Picnic',
+  'Hiking & Nature Walks',
+  'Beach Day',
+  'Camping',
+  'Cycling',
+  'Stargazing',
+  'Morning Walk',
+  'Gardening',
+  // Entertainment & Games
+  'Movies & Entertainment',
+  'Arcade Gaming',
+  'Binge Watching',
+  'Board Games & Puzzles',
+  'Karaoke',
+  'Dancing',
+  'Escape Rooms',
+  'Concerts & Live Music',
+  'Comedy Shows',
+  'Painting & Art',
+  // Food & Drinks
+  'Dining & Cafes',
+  'Cooking Together',
+  'Brunch Date',
+  'Food Tour',
+  'Dessert & Cafe Hopping',
+  'Bar & Nightlife',
+  // Wellness & Self-care
+  'Emotional Support',
+  'Cuddling & Comfort',
+  'Yoga & Meditation',
+  'Gym & Workout',
+  'Spa Day',
+  // Shopping & Errands
+  'Thrift Shopping',
+  'Grocery Shopping',
+  // Social & Cultural
+  'Museum & Art Gallery',
+  'Book Club & Reading',
+  'Sports Watching',
+  'Photography Walk',
+  'Volunteering Together',
+  'DIY Projects',
+];

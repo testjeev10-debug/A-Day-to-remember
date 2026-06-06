@@ -87,47 +87,65 @@ if (existingCount.cnt === 0) {
     {
       name: 'Sofia Ramirez',
       email: 'sofia@example.com',
-      bio: 'Hi! I am Sofia, a bubbly and enthusiastic companion who loves exploring the city. Whether you want to discover hidden gems or simply have great conversation over coffee, I am here for you.',
+      bio: 'Hi! I am Sofia, a bubbly and enthusiastic companion who loves exploring the city. Whether it\'s shopping, a picnic in the park, or thrift hunting for hidden gems, I make every outing an adventure.',
       hourly_rate: 35,
-      activities: JSON.stringify(['Shopping', 'Dining & Cafes', 'Outdoor & City Tours']),
+      activities: JSON.stringify(['Shopping', 'Dining & Cafes', 'Picnic', 'Thrift Shopping', 'Outdoor & City Tours', 'Photography Walk']),
       city: 'New York',
       photo_url: 'https://randomuser.me/api/portraits/women/44.jpg',
     },
     {
       name: 'James Chen',
       email: 'james@example.com',
-      bio: 'Movie buff and adventure seeker! I know all the best theaters and outdoor spots in town. Let me make your day truly memorable with fun-filled activities tailored just for you.',
+      bio: 'Movie buff, gamer and adventure seeker! I\'m your go-to companion for arcade battles, escape rooms, binge-watching sessions, and outdoor hikes. Let\'s make your day unforgettable.',
       hourly_rate: 30,
-      activities: JSON.stringify(['Movies & Entertainment', 'Outdoor & City Tours', 'Shopping']),
+      activities: JSON.stringify(['Movies & Entertainment', 'Arcade Gaming', 'Binge Watching', 'Escape Rooms', 'Hiking & Nature Walks', 'Board Games & Puzzles']),
       city: 'Los Angeles',
       photo_url: 'https://randomuser.me/api/portraits/men/32.jpg',
     },
     {
       name: 'Aisha Thompson',
       email: 'aisha@example.com',
-      bio: 'Warm, empathetic, and always present. I specialize in emotional support and meaningful conversations. Whether you are going through a tough time or just need someone to talk to, I am here.',
+      bio: 'Warm, empathetic and always present. I specialize in emotional support, comfort and meaningful connection. I\'m also great for yoga, spa days, morning walks and cozy binge-watching sessions.',
       hourly_rate: 40,
-      activities: JSON.stringify(['Emotional Support', 'Dining & Cafes', 'Shopping']),
+      activities: JSON.stringify(['Emotional Support', 'Cuddling & Comfort', 'Yoga & Meditation', 'Spa Day', 'Morning Walk', 'Binge Watching']),
       city: 'Chicago',
       photo_url: 'https://randomuser.me/api/portraits/women/68.jpg',
     },
     {
       name: 'Marco Bianchi',
       email: 'marco@example.com',
-      bio: 'Food enthusiast and certified city guide. I will take you to the best local restaurants and hidden neighborhood spots. Every meal and stroll becomes an unforgettable experience with me.',
+      bio: 'Food enthusiast and certified city guide. From hidden restaurant gems to cooking together at home, food tours to brunch dates — every meal becomes a memory. I also love live music and dancing!',
       hourly_rate: 45,
-      activities: JSON.stringify(['Dining & Cafes', 'Outdoor & City Tours', 'Movies & Entertainment']),
+      activities: JSON.stringify(['Dining & Cafes', 'Food Tour', 'Cooking Together', 'Brunch Date', 'Dessert & Cafe Hopping', 'Concerts & Live Music', 'Dancing']),
       city: 'San Francisco',
       photo_url: 'https://randomuser.me/api/portraits/men/75.jpg',
     },
     {
       name: 'Lily Park',
       email: 'lily@example.com',
-      bio: 'Fashion-forward and always up-to-date with the latest trends! Shopping with me is an experience in itself. I will help you find the perfect outfits and make it a fun, stress-free day.',
+      bio: 'Fashion-forward, creative and fun! I\'m your perfect companion for shopping, karaoke nights, painting sessions, and stargazing. Whether it\'s a night out or a cozy DIY project, I\'m all in!',
       hourly_rate: 28,
-      activities: JSON.stringify(['Shopping', 'Movies & Entertainment', 'Dining & Cafes']),
+      activities: JSON.stringify(['Shopping', 'Karaoke', 'Painting & Art', 'Stargazing', 'Dancing', 'Bar & Nightlife', 'DIY Projects']),
       city: 'New York',
       photo_url: 'https://randomuser.me/api/portraits/women/90.jpg',
+    },
+    {
+      name: 'Ryan Patel',
+      email: 'ryan@example.com',
+      bio: 'Fitness coach and outdoor enthusiast! I\'ll keep you motivated at the gym, join you for cycling, beach days or camping trips. Sports watching and volunteering are my way of staying connected to the community.',
+      hourly_rate: 38,
+      activities: JSON.stringify(['Gym & Workout', 'Cycling', 'Beach Day', 'Camping', 'Sports Watching', 'Hiking & Nature Walks', 'Volunteering Together']),
+      city: 'Miami',
+      photo_url: 'https://randomuser.me/api/portraits/men/52.jpg',
+    },
+    {
+      name: 'Zoe Williams',
+      email: 'zoe@example.com',
+      bio: 'Book lover, museum nerd and creative soul. I\'m great for quiet activities like reading together, visiting galleries, grocery shopping, or a peaceful morning walk. Always patient, never rushed.',
+      hourly_rate: 32,
+      activities: JSON.stringify(['Book Club & Reading', 'Museum & Art Gallery', 'Grocery Shopping', 'Morning Walk', 'Gardening', 'Photography Walk', 'Painting & Art']),
+      city: 'Seattle',
+      photo_url: 'https://randomuser.me/api/portraits/women/22.jpg',
     },
   ];
 
@@ -138,8 +156,8 @@ if (existingCount.cnt === 0) {
     'INSERT INTO companions (user_id, bio, hourly_rate, activities, city, photo_url, avg_rating, review_count) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'
   );
 
-  const ratings = [4.8, 4.6, 4.9, 4.7, 4.5];
-  const reviewCounts = [24, 17, 31, 22, 14];
+  const ratings = [4.8, 4.6, 4.9, 4.7, 4.5, 4.8, 4.7];
+  const reviewCounts = [24, 17, 31, 22, 14, 19, 11];
 
   companions.forEach((c, idx) => {
     const result = insertUser.run(c.name, c.email, password, 'companion');
