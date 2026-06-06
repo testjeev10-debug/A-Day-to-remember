@@ -55,6 +55,26 @@ export default function Navbar() {
             >
               Find Companions
             </Link>
+            <Link
+              to="/available-now"
+              className={`px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 ${
+                isActive('/available-now')
+                  ? 'bg-violet-50 text-violet-700'
+                  : 'text-gray-500 hover:text-violet-700 hover:bg-violet-50'
+              }`}
+            >
+              Available Now ⚡
+            </Link>
+            <Link
+              to="/mood"
+              className={`px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 ${
+                isActive('/mood')
+                  ? 'bg-violet-50 text-violet-700'
+                  : 'text-gray-500 hover:text-violet-700 hover:bg-violet-50'
+              }`}
+            >
+              Mood Match 💭
+            </Link>
 
             {user ? (
               <>
@@ -68,6 +88,18 @@ export default function Navbar() {
                 >
                   Dashboard
                 </Link>
+                {user.role === 'client' && (
+                  <Link
+                    to="/happiness"
+                    className={`px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 ${
+                      isActive('/happiness')
+                        ? 'bg-violet-50 text-violet-700'
+                        : 'text-gray-500 hover:text-violet-700 hover:bg-violet-50'
+                    }`}
+                  >
+                    My Happiness 💛
+                  </Link>
+                )}
                 <div className="flex items-center gap-3 ml-3 pl-3 border-l border-gray-200">
                   <div className="w-8 h-8 rounded-full bg-gradient-to-br from-violet-600 to-pink-500 flex items-center justify-center text-sm font-bold text-white shadow-sm">
                     {user.name[0].toUpperCase()}
@@ -114,6 +146,20 @@ export default function Navbar() {
             >
               Find Companions
             </Link>
+            <Link
+              to="/available-now"
+              className="px-4 py-2.5 rounded-xl text-gray-600 hover:text-violet-700 hover:bg-violet-50 font-semibold transition-all"
+              onClick={() => setMenuOpen(false)}
+            >
+              Available Now ⚡
+            </Link>
+            <Link
+              to="/mood"
+              className="px-4 py-2.5 rounded-xl text-gray-600 hover:text-violet-700 hover:bg-violet-50 font-semibold transition-all"
+              onClick={() => setMenuOpen(false)}
+            >
+              Mood Match 💭
+            </Link>
             {user ? (
               <>
                 <Link
@@ -123,6 +169,15 @@ export default function Navbar() {
                 >
                   Dashboard
                 </Link>
+                {user.role === 'client' && (
+                  <Link
+                    to="/happiness"
+                    className="px-4 py-2.5 rounded-xl text-gray-600 hover:text-violet-700 hover:bg-violet-50 font-semibold transition-all"
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    My Happiness 💛
+                  </Link>
+                )}
                 <div className="flex items-center gap-3 px-4 py-2">
                   <div className="w-8 h-8 rounded-full bg-gradient-to-br from-violet-600 to-pink-500 flex items-center justify-center text-sm font-bold text-white">
                     {user.name[0].toUpperCase()}

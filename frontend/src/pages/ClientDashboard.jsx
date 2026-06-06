@@ -4,6 +4,9 @@ import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
 import StarRating from '../components/StarRating';
 import ActivityBadge from '../components/ActivityBadge';
+import MeetupTipsModal from '../components/MeetupTipsModal';
+import HappinessScoreForm from '../components/HappinessScoreForm';
+import SafetyPanel from '../components/SafetyPanel';
 
 const STATUS_CONFIG = {
   pending: { label: 'Pending', color: 'bg-amber-100 text-amber-700', icon: '⏳' },
@@ -76,6 +79,8 @@ export default function ClientDashboard() {
   const [reviewBooking, setReviewBooking] = useState(null);
   const [cancellingId, setCancellingId] = useState(null);
   const [activeFilter, setActiveFilter] = useState('all');
+  const [meetupTipsBooking, setMeetupTipsBooking] = useState(null);
+  const [happinessBooking, setHappinessBooking] = useState(null);
 
   const fetchBookings = async () => {
     try {
@@ -208,6 +213,22 @@ export default function ClientDashboard() {
                         {cancellingId === booking.id ? 'Cancelling...' : 'Cancel Booking'}
                       </button>
                     )}
+                    {booking.status === 'confirmed' && (
+                      <button
+                        onClick={() => setMeetupTipsBooking(booking)}
+                        className="text-sm text-violet-600 border border-violet-300 hover:bg-violet-50 rounded-lg px-3 py-1.5 transition-colors font-medium"
+                      >
+                        🤝 Meetup Tips
+                      </button>
+                    )}
+                    {booking.status === 'completed' && !booking.has_happiness_score && (
+                      <button
+                        onClick={() => setHappinessBooking(booking)}
+                        className="text-sm text-yellow-700 border border-yellow-300 hover:bg-yellow-50 rounded-lg px-3 py-1.5 transition-colors font-medium"
+                      >
+                        💛 Rate Experience
+                      </button>
+                    )}
                     {booking.status === 'completed' && !booking.has_review && (
                       <button
                         onClick={() => setReviewBooking(booking)}
@@ -221,6 +242,18 @@ export default function ClientDashboard() {
                     )}
                   </div>
                 </div>
+
+                {/* Safety Panel for confirmed/pending bookings */}
+                {(booking.status === 'confirmed' || booking.status === 'pending') && (
+                  <div className="mt-4 pt-4 border-t border-gray-100">
+                    <SafetyPanel
+                      bookingId={booking.id}
+                      userRole="client"
+                      bookingStatus={booking.status}
+                      safetyData={booking.safety_data || null}
+                    />
+                  </div>
+                )}
               </div>
             );
           })}
@@ -232,6 +265,26 @@ export default function ClientDashboard() {
           booking={reviewBooking}
           onClose={() => setReviewBooking(null)}
           onSubmit={handleReviewSubmit}
+        />
+      )}
+
+      {meetupTipsBooking && (
+        <MeetupTipsModal
+          bookingId={meetupTipsBooking.id}
+          companionName={meetupTipsBooking.companion_name}
+          activityType={meetupTipsBooking.activity}
+          onClose={() => setMeetupTipsBooking(null)}
+        />
+      )}
+
+      {happinessBooking && (
+        <HappinessScoreForm
+          bookingId={happinessBooking.id}
+          companionName={happinessBooking.companion_name}
+          activityType={happinessBooking.activity}
+          beforeMood={happinessBooking.before_mood || ''}
+          onClose={() => setHappinessBooking(null)}
+          onSubmit={() => { setHappinessBooking(null); fetchBookings(); }}
         />
       )}
     </div>

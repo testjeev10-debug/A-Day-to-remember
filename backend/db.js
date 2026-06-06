@@ -198,4 +198,79 @@ if (existingCount.cnt === 0) {
   console.log('Database seeded with 5 companions and sample reviews.');
 }
 
+// New feature tables
+db.exec(`
+  CREATE TABLE IF NOT EXISTS mood_logs (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER NOT NULL,
+    selected_mood TEXT NOT NULL,
+    recommended_activity TEXT,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+  );
+
+  CREATE TABLE IF NOT EXISTS happiness_scores (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    booking_id INTEGER UNIQUE NOT NULL,
+    user_id INTEGER NOT NULL,
+    companion_id INTEGER NOT NULL,
+    before_mood TEXT,
+    after_score INTEGER,
+    safety_rating INTEGER,
+    would_meet_again INTEGER,
+    feedback_text TEXT,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+  );
+
+  CREATE TABLE IF NOT EXISTS safety_reports (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    reporter_id INTEGER NOT NULL,
+    reported_user_id INTEGER NOT NULL,
+    booking_id INTEGER,
+    reason TEXT NOT NULL,
+    description TEXT,
+    status TEXT DEFAULT 'pending',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    reviewed_at DATETIME
+  );
+
+  CREATE TABLE IF NOT EXISTS blocked_users (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    blocker_id INTEGER NOT NULL,
+    blocked_user_id INTEGER NOT NULL,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE(blocker_id, blocked_user_id)
+  );
+
+  CREATE TABLE IF NOT EXISTS companion_live_status (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    companion_id INTEGER UNIQUE NOT NULL,
+    is_available_now INTEGER DEFAULT 0,
+    current_city TEXT,
+    latitude REAL,
+    longitude REAL,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+  );
+
+  CREATE TABLE IF NOT EXISTS booking_safety (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    booking_id INTEGER UNIQUE NOT NULL,
+    user_checkin_at DATETIME,
+    user_checkout_at DATETIME,
+    companion_checkin_at DATETIME,
+    companion_checkout_at DATETIME,
+    sos_triggered INTEGER DEFAULT 0,
+    sos_triggered_at DATETIME
+  );
+`);
+
+// Seed companion_live_status for existing companions if not present
+const liveStatusCount = db.prepare('SELECT COUNT(*) as cnt FROM companion_live_status').get();
+if (liveStatusCount.cnt === 0) {
+  const allCompanions = db.prepare('SELECT id FROM companions').all();
+  const insertLiveStatus = db.prepare(
+    'INSERT OR IGNORE INTO companion_live_status (companion_id, is_available_now) VALUES (?, 0)'
+  );
+  allCompanions.forEach((c) => insertLiveStatus.run(c.id));
+}
+
 module.exports = db;

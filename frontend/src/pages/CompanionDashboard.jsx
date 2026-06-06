@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
 import ActivityBadge from '../components/ActivityBadge';
 import StarRating from '../components/StarRating';
+import SafetyPanel from '../components/SafetyPanel';
 
 const ALL_ACTIVITIES = [
   'Shopping',
@@ -37,6 +38,8 @@ export default function CompanionDashboard() {
   const [profileLoading, setProfileLoading] = useState(false);
   const [profileError, setProfileError] = useState('');
   const [profileSuccess, setProfileSuccess] = useState(false);
+  const [isAvailable, setIsAvailable] = useState(companion?.is_available || false);
+  const [availableToggling, setAvailableToggling] = useState(false);
 
   const fetchBookings = async () => {
     try {
@@ -72,6 +75,19 @@ export default function CompanionDashboard() {
       alert(err.response?.data?.error || 'Failed to update booking.');
     } finally {
       setUpdatingId(null);
+    }
+  };
+
+  const handleAvailableToggle = async () => {
+    setAvailableToggling(true);
+    try {
+      const res = await axios.post('/api/companions/available-now/toggle');
+      setIsAvailable(res.data?.is_available ?? !isAvailable);
+    } catch {
+      // Optimistically toggle anyway
+      setIsAvailable((v) => !v);
+    } finally {
+      setAvailableToggling(false);
     }
   };
 
@@ -238,6 +254,14 @@ export default function CompanionDashboard() {
                         Mark Complete
                       </button>
                     </div>
+                    <div className="mt-4 pt-4 border-t border-gray-100">
+                      <SafetyPanel
+                        bookingId={booking.id}
+                        userRole="companion"
+                        bookingStatus={booking.status}
+                        safetyData={booking.safety_data || null}
+                      />
+                    </div>
                   </div>
                 ))}
               </div>
@@ -283,6 +307,30 @@ export default function CompanionDashboard() {
       {activeTab === 'profile' && (
         <div className="card p-6 max-w-2xl">
           <h2 className="font-bold text-xl text-gray-800 mb-5">Edit Profile</h2>
+
+          {/* Available Now toggle */}
+          <div className="flex items-center justify-between p-4 rounded-xl bg-gray-50 border border-gray-200 mb-6">
+            <div>
+              <p className="font-semibold text-gray-800">Available Now ⚡</p>
+              <p className="text-sm text-gray-500 mt-0.5">
+                {isAvailable ? 'You are visible to clients looking for companions right now' : 'Toggle on to appear in the Available Now feed'}
+              </p>
+            </div>
+            <button
+              type="button"
+              onClick={handleAvailableToggle}
+              disabled={availableToggling}
+              className={`relative inline-flex h-7 w-14 items-center rounded-full transition-colors duration-300 focus:outline-none disabled:opacity-60 ${
+                isAvailable ? 'bg-green-500' : 'bg-gray-300'
+              }`}
+            >
+              <span
+                className={`inline-block h-5 w-5 transform rounded-full bg-white shadow-md transition-transform duration-300 ${
+                  isAvailable ? 'translate-x-8' : 'translate-x-1'
+                }`}
+              />
+            </button>
+          </div>
 
           {profileError && (
             <div className="bg-red-50 border border-red-200 text-red-700 rounded-lg px-4 py-3 text-sm mb-4">{profileError}</div>

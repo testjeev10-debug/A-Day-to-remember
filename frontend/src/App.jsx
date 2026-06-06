@@ -10,6 +10,10 @@ import CompanionProfile from './pages/CompanionProfile';
 import BookingPage from './pages/BookingPage';
 import ClientDashboard from './pages/ClientDashboard';
 import CompanionDashboard from './pages/CompanionDashboard';
+import MoodMatcher from './pages/MoodMatcher';
+import AvailableNow from './pages/AvailableNow';
+import HappinessDashboard from './pages/HappinessDashboard';
+import AdminDashboard from './pages/AdminDashboard';
 
 function ProtectedRoute({ children, role }) {
   const { user, loading } = useAuth();
@@ -21,7 +25,7 @@ function ProtectedRoute({ children, role }) {
 
 function AppRoutes() {
   return (
-    <div className="min-h-screen bg-orange-50">
+    <div className="min-h-screen bg-gray-50">
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -53,6 +57,17 @@ function AppRoutes() {
             </ProtectedRoute>
           }
         />
+        <Route path="/mood" element={<MoodMatcher />} />
+        <Route path="/available-now" element={<AvailableNow />} />
+        <Route
+          path="/happiness"
+          element={
+            <ProtectedRoute role="client">
+              <HappinessDashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="/admin" element={<AdminDashboard />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </div>
